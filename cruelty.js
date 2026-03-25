@@ -22,6 +22,15 @@ const prizes = [
     'PRUEBA'
 ];
 
+// Estado de las casillas: true = rascada (sin capa), false = sin rascar (con capa)
+// Puedes cambiar estos valores para dejar casillas ya rascadas
+const scratchedState = [
+    true, false, false, false,
+    false, false, false, false,
+    false, false, false, false,
+    false, false, false, false
+];
+
 // Inicializar el grid de rasca y gana
 function initScratchCards() {
     const grid = document.getElementById('scratchGrid');
@@ -46,13 +55,20 @@ function initScratchCards() {
         grid.appendChild(card);
 
         // Inicializar la lógica de rasguño para este canvas
-        initScratchCanvas(canvas);
+        // Pasar el estado (rascado o no) al inicializador
+        initScratchCanvas(canvas, scratchedState[index]);
     });
 }
 
 // Función para inicializar el efecto de rasguño en cada canvas
-function initScratchCanvas(canvas) {
+function initScratchCanvas(canvas, isScratched = false) {
     const ctx = canvas.getContext('2d');
+
+    // Si la casilla ya está rascada, no dibujamos la capa de rasguño
+    if (isScratched) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        return;
+    }
 
     // Dibujar la capa de rasguño
     ctx.fillStyle = '#333333';
