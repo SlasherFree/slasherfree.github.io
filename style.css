@@ -73,6 +73,7 @@ body::after {
     align-items: center;
     z-index: 1;
     position: relative;
+    margin-top: 180px;
 }
 
 .button {
@@ -143,4 +144,14 @@ body::after {
     background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
     color: #ff3333;
     border-color: #ff3333;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 400px;
+    height: auto;
+    z-index: 10;
 }

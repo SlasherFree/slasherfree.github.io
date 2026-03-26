@@ -2,13 +2,15 @@ function navigate(page) {
     window.location.href = page;
 }
 
+const scratchOverlayImageSrc = 'images/UmbreProud-4x.png';
+
 // Premios para las 16 casillas de Huesoperro
 const prizes = [
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
+    '1 Captura extra',
+    '3 Capturas extra',
+    '+3 pociones',
+    '1 Revivir',
+    '+1 Masterball',
     'PRUEBA',
     'PRUEBA',
     'PRUEBA',
@@ -22,10 +24,29 @@ const prizes = [
     'PRUEBA'
 ];
 
+const prizeImages = [
+    'images/ultraball-4x.png',
+    'images/meisterball-4x.png',
+    'images/pocion.jpg',
+    'images/RIP-4x.png',
+    'images/meisterball-4x.png',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+];
+
 // Estado de las casillas: true = rascada (sin capa), false = sin rascar (con capa)
 // Puedes cambiar estos valores para dejar casillas ya rascadas
 const scratchedState = [
-    true, false, false, false,
+    true, true, false, false,
     false, false, false, false,
     false, false, false, false,
     false, false, false, false
@@ -42,12 +63,26 @@ function initScratchCards() {
         
         const content = document.createElement('div');
         content.className = 'scratch-content';
-        content.textContent = prize;
-        
+
+        if (prizeImages[index]) {
+            const img = document.createElement('img');
+            img.src = prizeImages[index];
+            img.alt = prize;
+            const size = prizeImages[index].includes('cruz.png') ? '70px' : '100px';
+            img.style.maxWidth = size;
+            img.style.maxHeight = size;
+            img.style.marginBottom = '10px';
+            content.appendChild(img);
+        }
+
+        const textDiv = document.createElement('div');
+        textDiv.textContent = prize;
+        content.appendChild(textDiv);
+
         const canvas = document.createElement('canvas');
         canvas.className = 'scratch-canvas';
-        canvas.width = 80;
-        canvas.height = 80;
+        canvas.width = 140;
+        canvas.height = 140;
         canvas.style.touchAction = 'none';
         
         card.appendChild(content);
@@ -70,27 +105,43 @@ function initScratchCanvas(canvas, isScratched = false) {
         return;
     }
 
-    // Dibujar la capa de rasguño
-    ctx.fillStyle = '#333333';
+    // Dibujar la capa de rasguño estilizada
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#2b2b2b');
+    gradient.addColorStop(1, '#484848');
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Agregar patrón
-    ctx.fillStyle = '#444444';
-    for (let i = 0; i < canvas.width; i += 8) {
-        for (let j = 0; j < canvas.height; j += 8) {
-            if ((i / 8 + j / 8) % 2 === 0) {
-                ctx.fillRect(i, j, 8, 8);
-            }
+    // Patrón de parche visual
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+    for (let i = 0; i < canvas.width; i += 12) {
+        ctx.fillRect(i, 0, 4, canvas.height);
+    }
+
+    // Círculos ligeros
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+    for (let i = 8; i < canvas.width; i += 16) {
+        for (let j = 8; j < canvas.height; j += 16) {
+            ctx.beginPath();
+            ctx.arc(i, j, 3, 0, 2 * Math.PI);
+            ctx.fill();
         }
     }
 
-    // Texto indicador
-    ctx.fillStyle = '#ff0000';
-    ctx.font = 'bold 10px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('RASCA', canvas.width / 2, canvas.height / 2 - 5);
-    ctx.fillText('AQUÍ', canvas.width / 2, canvas.height / 2 + 5);
+    // Imagen de instrucción centrada en el área rascable
+    const overlayImg = new Image();
+    overlayImg.src = scratchOverlayImageSrc;
+    const drawLogo = () => {
+        const size = canvas.width * 0.55;
+        const x = (canvas.width - size) / 2;
+        const y = (canvas.height - size) / 2;
+        ctx.drawImage(overlayImg, x, y, size, size);
+    };
+    if (overlayImg.complete) {
+        drawLogo();
+    } else {
+        overlayImg.onload = drawLogo;
+    }
 
     let isScratching = false;
 
@@ -100,7 +151,7 @@ function initScratchCanvas(canvas, isScratched = false) {
         const y = (e.clientY || e.touches[0].clientY) - rect.top;
 
         // Borrar círculos para simular rasguño
-        ctx.clearRect(x - 12, y - 12, 24, 24);
+        ctx.clearRect(x - 21, y - 21, 42, 42);
     }
 
     function startScratching(e) {
