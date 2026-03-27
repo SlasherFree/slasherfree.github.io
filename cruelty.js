@@ -5,23 +5,25 @@ function navigate(page) {
 const scratchOverlayImageSrc = 'images/GlecCry-4x.png';
 
 // Premio para las 16 casillas
+
+
 const prizes = [
     '1 Captura extra',
     '+1 Masterball',
     'Sin captura en la próxima ruta',
     'Tira 1 poción',
     'Libera 1 Pokémon',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA'
+    '+1 Poción',
+    '+1 Masterball',
+    '1 Captura extra',
+    'Castigo del Chat',
+    '+2 Pociones',
+    'Tira 1 poción',
+    '1 Revivir',
+    '+1 Masterball',
+    'Sin captura en la próxima ruta',
+    '1 Revivir',
+    '1 Captura extra'
 ];
 
 // Imágenes para las casillas
@@ -31,23 +33,23 @@ const prizeImages = [
     'images/cruz.png',
     'images/pocion.jpg',
     'images/N.png',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
+    'images/pocion.jpg',
+    'images/meisterball-4x.png',
+    'images/ultraball-4x.png',
+    'images/twitch.png',
+    'images/pocion.jpg',
+    'images/pocion.jpg',
+    'images/RIP-4x.png',
+    'images/meisterball-4x.png',
+    'images/cruz.png',
+    'images/RIP-4x.png',
+    'images/ultraball-4x.png'
 ];
 
 // Estado de las casillas: true = rascada (sin capa), false = sin rascar (con capa)
 // Puedes cambiar estos valores para dejar casillas ya rascadas
 const scratchedState = [
-    true, false, false, false,
+    false, false, false, false,
     false, false, false, false,
     false, false, false, false,
     false, false, false, false

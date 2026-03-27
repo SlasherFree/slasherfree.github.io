@@ -5,24 +5,27 @@ function navigate(page) {
 const scratchOverlayImageSrc = 'images/UmbreProud-4x.png';
 
 // Premios para las 16 casillas de Huesoperro
+
+
 const prizes = [
     '1 Captura extra',
     '3 Capturas extra',
-    '+3 pociones',
+    '+3 Pociones',
     '1 Revivir',
     '+1 Masterball',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA',
-    'PRUEBA'
+    '1 Captura extra',
+    '+1 Masterball',
+    '1 Revivir',
+    '+1 Poción',
+    '+3 Pociones',
+    '1 Captura extra',
+    '1 Captura extra',
+    '+1 Masterball',
+    '+2 Pociones',
+    '+1 Masterball',
+    '1 Revivir'
 ];
+
 
 const prizeImages = [
     'images/ultraball-4x.png',
@@ -30,23 +33,23 @@ const prizeImages = [
     'images/pocion.jpg',
     'images/RIP-4x.png',
     'images/meisterball-4x.png',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
+    'images/ultraball-4x.png',
+    'images/meisterball-4x.png',
+    'images/RIP-4x.png',
+    'images/pocion.jpg',
+    'images/pocion.jpg',
+    'images/ultraball-4x.png',
+    'images/ultraball-4x.png',
+    'images/meisterball-4x.png',
+    'images/pocion.jpg',
+    'images/meisterball-4x.png',
+    'images/RIP-4x.png'
 ];
 
 // Estado de las casillas: true = rascada (sin capa), false = sin rascar (con capa)
 // Puedes cambiar estos valores para dejar casillas ya rascadas
 const scratchedState = [
-    true, true, false, false,
+    false, false, false, false,
     false, false, false, false,
     false, false, false, false,
     false, false, false, false
