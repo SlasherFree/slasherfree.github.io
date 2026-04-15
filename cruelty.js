@@ -52,7 +52,7 @@ const scratchedState = [
     false, false, false, false,
     false, false, true, false,
     false, false, false, false,
-    false, false, false, false
+    false, true, false, false
 ];
 
 // Inicializar el grid de rasca y gana
