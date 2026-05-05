@@ -2,7 +2,7 @@ function navigate(page) {
     window.location.href = page;
 }
 
-const scratchOverlayImageSrc = 'images/UmbreProud-4x.png';
+const scratchOverlayImageSrc = 'images/Magnemite.png';
 
 // Premios para las 16 casillas de Huesoperro
 
