@@ -49,8 +49,8 @@ const prizeImages = [
 // Estado de las casillas: true = rascada (sin capa), false = sin rascar (con capa)
 // Puedes cambiar estos valores para dejar casillas ya rascadas
 const scratchedState = [
-    false, false, false, true,
-    true, true, true, false,
+    false, false, true, true,
+    true, true, true, true,
     true, true, false, false,
     true, false, true, false
 ];
