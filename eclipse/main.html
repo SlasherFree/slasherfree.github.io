@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Ruleta</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main class="container">
+		<h1>Ruleta de premios</h1>
+		<div class="ruleta-wrap">
+			<canvas id="ruletaCanvas"></canvas>
+			</div>
+		<div id="result" class="result"></div>
+	</main>
+
+	<script type="module">
+		import Ruleta from './ruleta.js';
+		import './background.js';
+
+		// Lista de premios (modifica esta lista libremente)
+		const premios = [
+			'1 Captura extra',
+			'2 Capturas extra',
+			'Compra 1 poción',
+			'Compra 2 pociones',
+			'Libera 1 Pokémon',
+			'Prohibido capturar en la siguiente ruta',
+			'Tira 1 poción',
+		
+		];
+
+		const resultBox = document.getElementById('result');
+		const showPrize = (prize) => {
+			resultBox.textContent = `¡Has ganado: ${prize}!`;
+			resultBox.classList.add('visible');
+			window.clearTimeout(resultBox.hideTimer);
+			resultBox.hideTimer = window.setTimeout(() => {
+				resultBox.classList.remove('visible');
+			}, 3800);
+		};
+
+		const rueda = new Ruleta('ruletaCanvas', premios, {
+			size: 600,
+			onResult: (index, prize) => {
+				showPrize(prize);
+			}
+		});
+
+	</script>
+</body>
+</html>
